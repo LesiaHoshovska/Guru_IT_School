@@ -96,43 +96,54 @@ function valuePerDay(shopsArr) {
 
 let battleField = [[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]];
 
-let shipsCoordinate = [];
 
-function shipPosition() {    
+function shipPosition() {  
+    let shipsCoordinate = [];
     for (let i = 0; i < 5; i++) {
         let shipCoordinate = [];
         for (let j = 0; j < 3; j++) {
-            let coordinate = Math.floor(Math.random()*7);
+            let coordinate = 1 + Math.floor(Math.random()*6);
             shipCoordinate.push(coordinate)          
         }
-        shipsCoordinate.push(shipCoordinate)
-    }
-    return shipsCoordinate
+        return shipsCoordinate.push(shipCoordinate)
+    }    
 };
 
+let shipsCoordinateArr = shipPosition();
+  
+    function playGame(shipCoordinate) {
+        let projectile = parseInt(prompt('Введіть кількість снарядів'));
+        let winCount = 0;
+        let attemptCount = 0;
 
-
-
-   let projectile = parseInt(prompt('Введіть кількість снарядів'));
-    let winCount = 0;
-    let attemptCount = 0;
+        do {
+            let userCoordinate = [];
+            let coordinateX = parseInt(prompt('ВВедіть координату x'));
+            userCoordinate.push(coordinateX)
+            let coordinateY = parseInt(prompt('ВВедіть координату y'));
+            userCoordinate.push(coordinateY)
     
-    do {
-        let userCoordinate = [];
-        let coordinateX = parseInt(prompt('ВВедіть координату x'));
-        userCoordinate.push(coordinateX)
-        let coordinateY = parseInt(prompt('ВВедіть координату y'));
-        userCoordinate.push(coordinateY)
-        if (shipsCoordinate.includes(userCoordinate)) {
-           winCount++
-           document.write(`ВИ влучили в корабель`) 
-           attemptCount++
-        } else {
-            attemptCount++
-            document.write(`Ви промахнулися. У Вас залишилося ${projectile-attemptCount} спроб`)
-        }
-        if (winCount===5)
-        document.write('Вітаємо! Ви виграли!!!')
-        break
+            for (let i = 0; i < shipCoordinate.length; i++) {
+                
+                if (shipCoordinate[i]===userCoordinate) {
+                   
+                    document.write(`ВИ влучили в корабель`) 
+                    attemptCount++
+                    delete shipCoordinate[i]
+         
+                 } else {
+                     attemptCount++
+                     document.write(`Ви промахнулися. У Вас залишилося ${projectile-attemptCount} спроб`)
+                 }
+            }
+            
+            if (winCount===5)
+            document.write('Вітаємо! Ви виграли!!!')
+            break
+    
+        } while (attemptCount===projectile);
+return 'Ви пограли'
 
-    } while (attemptCount===projectile);
+    }
+    
+    
