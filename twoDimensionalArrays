@@ -1,0 +1,78 @@
+// Задача 2. Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+// 1) загальний прибуток кожного масиву за тиждень;
+// 2) загальний прибуток усіх магазинів кожного дня (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+
+function shopsValue(value, shops) {
+    let shopValueArr = []
+    for (let i = 0; i < value; i++) {
+        let valueRow = [];
+        for (let j = 0; j < shops; j++) {
+           let value = parseFloat(prompt(`Ииудіть прибуток магазину`))
+           valueRow.push(value)            
+        }
+        shopValueArr.push(valueRow)
+    }
+    return shopValueArr    
+}
+
+function shopValuePerWeek(arr) {
+    let weekShopsValue = []
+    for (let i = 0; i < arr.length; i++) {
+        let shopValue = 0;
+        shopValue = shopValueArr[i].reduce((prevVal, val, i, arr)=> {
+            return prevVal+val
+        })
+        weekShopsValue.push(shopsValue)
+    }
+    return weekShopsValue
+}
+
+let renderedValue =  shopValuePerWeek(shopValueArr);
+document.write(`${renderedValue}`)
+
+
+
+// Задача 3. Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.
+
+let battleField = [[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]];
+
+let shipsCoordinate = [];
+
+function shipPosition() {    
+    for (let i = 0; i < 5; i++) {
+        let shipCoordinate = [];
+        for (let j = 0; j < 3; j++) {
+            let coordinate = Math.floor(Math.random()*7);
+            shipCoordinate.push(coordinate)          
+        }
+        shipsCoordinate.push(shipCoordinate)
+    }
+    return shipsCoordinate
+};
+
+
+
+
+   let projectile = parseInt(prompt('Введіть кількість снарядів'));
+    let winCount = 0;
+    let attemptCount = 0;
+    
+    do {
+        let userCoordinate = [];
+        let coordinateX = parseInt(prompt('ВВедіть координату x'));
+        userCoordinate.push(coordinateX)
+        let coordinateY = parseInt(prompt('ВВедіть координату y'));
+        userCoordinate.push(coordinateY)
+        if (shipsCoordinate.includes(userCoordinate)) {
+           winCount++
+           document.write(`ВИ влучили в корабель`) 
+           attemptCount++
+        } else {
+            attemptCount++
+            document.write(`Ви промахнулися. У Вас залишилося ${projectile-attemptCount} спроб`)
+        }
+        if (winCount===5)
+        document.write('Вітаємо! Ви виграли!!!')
+        break
+
+    } while (attemptCount===projectile);
