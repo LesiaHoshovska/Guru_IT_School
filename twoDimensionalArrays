@@ -31,16 +31,16 @@ let renderedValue =  shopValuePerWeek(shopValueArr);
 document.write(`${renderedValue}`)
 
 function valuePerDay(shopsArr) {
-//     let sumValue = [];
-//         for (let i = 0; i < shopsArr.length; i++) {
-//         let daysShopsValue = 0;
-//         for (let j = 0; j < shopsArr[i].length; j++) {
-//              daysShopsValue += shopsValue[i][j]            
-//         }  
-//         sumValue.push(daysShopsValue)      
-//     }
-//     return sumValue
-// }
+    let sumValue = [];
+        for (let i = 0; i < shopsArr[i].length; i++) {
+        let daysShopsValue = 0;
+        for (let j = 0; j < shopsArr.length; j++) {
+             daysShopsValue += shopsValue[j][i]            
+        }  
+        sumValue.push(daysShopsValue)      
+    }
+    return sumValue
+}
 
 
 
