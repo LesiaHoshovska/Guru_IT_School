@@ -1,3 +1,51 @@
+const testArr = [[1, 3, 5, 4, 8], [2, 8, 6, 4, 9], [2, 9, 7, 4, 6], [6, 7, 9, 6, 3, 4]]
+
+// 1)
+function arr1(arr) {
+    let sum1 = 0;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length/2; j++) {
+            sum1+= arr[i][j]            
+        }        
+    }
+    return sum1
+}
+
+// 2)
+
+function arr2(arr) {
+    let sum1 = 0;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = arr[i].length/2; j < arr.length; j++) {
+            sum1+= arr[i][j]            
+        }        
+    }
+    return sum1
+}
+
+//3)
+function arr3(arr) {
+    let sum1 = 0;
+    for (let i = Math.floor(arr.length/2); i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length/2; j++) {
+            sum1+= arr[i][j]            
+        }        
+    }
+    return sum1
+}
+
+//4)
+function arr4(arr) {
+    let sum1 = 0;
+    for (let i = Math.floor(arr.length/2); i < arr.length; i++) {
+        for (let j = Math.floor(arr[i].length/2); j < arr[i].length/2; j++) {
+            sum1+= arr[i][j]            
+        }        
+    }
+    return sum1
+}
+
+
 // Задача 2. Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
 // 1) загальний прибуток кожного масиву за тиждень;
 // 2) загальний прибуток усіх магазинів кожного дня (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
