@@ -30,6 +30,18 @@ function shopValuePerWeek(arr) {
 let renderedValue =  shopValuePerWeek(shopValueArr);
 document.write(`${renderedValue}`)
 
+function valuePerDay(shopsArr) {
+//     let sumValue = [];
+//         for (let i = 0; i < shopsArr.length; i++) {
+//         let daysShopsValue = 0;
+//         for (let j = 0; j < shopsArr[i].length; j++) {
+//              daysShopsValue += shopsValue[i][j]            
+//         }  
+//         sumValue.push(daysShopsValue)      
+//     }
+//     return sumValue
+// }
+
 
 
 // Задача 3. Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.
