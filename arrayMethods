@@ -1,0 +1,227 @@
+// Задача 1. Дано масив цілих чисел. Кожне від’ємне число замінити на 0.
+let arr = [1, -2, 3, -4, 5]
+arr.forEach((val, i, arr) => {
+    if (arr[i] < 0)   <-- Тут (a також інших) можна було записати умову з використанням копії значення  if ( val < 0 )
+    arr[i]=0;
+});
+
+// Задача 2. Дано масив цін. Сформувати новий масив, який містить тільки ті ціни, які менші за задану.
+
+let price = [123, 433, 455, 11, 34]
+
+function priceArr(price, arr) {
+    let newArr = arr.map((val, i, arr) =>   <--  Тут треба було використати фільтрацію 
+        arr[i]<price)
+    return newArr
+}
+document.write(newArr)
+
+// Задача 3. Дано масив цін товарів. Для цін, які менші за 1000грн. додати 20% ціни, для тих, які більші за 1000 грн. відняти 30%.
+
+let price = [457, 567, 55, 98, 456, 527, 54]
+function modPrice(arr) {
+    let modifiedPrice = price.map((val, i, arr) => {
+        if (val < 1000) {
+             val+(val*0,2)     <-- Ви маєте повертати значення, а не лише обчислювати. Хоча тут можна було використати forEach
+        }else{
+            val-(val*0,3)
+        }       
+    })
+    return modifiedPrice 
+}
+
+// Задача 4. Дано масив імен. Сформувати новий масив, який складається з імен, які починаються на задану літеру.
+let names = ['Nadia', 'Maria', 'Orest', 'Jessica', 'Don', 'Oleg']
+let userChoiceLetter = prompt('Виберіть літеру латинського алфавіту')    <-- Тут треба використати фільтрацію
+let targetNammes = names.map((val, i, arr) => 
+    arr[i][0] === userChoiceLetter
+);
+
+// Задача 5. Дано ваги автомобілів на парковці. З’ясувати, чи усі автомобілі є легковими (легшими за 2000 кг).
+let carWaight = [2000, 50000, 2500, 1500, 6000, 1400]
+document.write(`${carWaight.some((val, i, arr) => arr[i] > 2000)}`);   <-- Ок. Але більше підходить по умові every
+
+// Задача 6. Дано масив, який зберігає кількість відвідувачів протягом тижня. З’ясувати, чи були дні, коли кількість відвідувачів була меншою за 10.
+let customerNumber = [130, 9, 250, 15, 45, 98, 98]
+let lessThan10 = customerNumber.some((val, i, arr) => arr[i] < 10);    
+document.write(`${lessThan10}`)
+
+// Задача 7. Розробити функцію, яка би для довільної кількості переданих символів визначала, кількість букв «а».
+let symbol = [];
+let userInput = prompt('Введіть символ');
+do {
+    symbol.push(userInput)
+} while (userInput = 0);
+let numberA = symbol.filter((val, i, arr) =>    <--Треба використати reduce
+    arr[i] === 'a');
+    function countA(arr) {
+       return arr.length+1
+    };
+       
+
+// Задача 8. Розробити функцію, яка би для довільної кількості чисел знаходила добуток чисел.
+let numbers = [];
+let userInput = parseFloat(prompt('Введіть число'));
+do {
+    numbers.push(userInput)
+} while (userInput = 0);
+function product(result, val, i, arr) {
+    return result *= val
+};
+
+let arrayProduct = numbers.reduce(product);
+
+
+// Задача 9. Розробити функцію, яка би для довільної кількості чисел знаходила максимальне.
+let numbers = [];
+let userInput = parseFloat(prompt('Введіть число'));
+do {
+    numbers.push(userInput)
+} while (userInput = 0);
+
+function maxValue (arr) {
+   return Math.max(arr)
+};
+
+// 1.	Задача. Відсортувати масив імен за останньою літерою.
+let names = ['Nadia', 'Maria', 'Orest', 'Jessica', 'Don', 'Oleg']
+function compareFunction(firstEl, secondEl){
+    if (firstEl[arr.length+1] > secondEl[arr.length+1]){
+        return 1
+    } 
+    if (firstEl[arr.length+1] < secondEl[arr.length+1]){
+        return -1
+    }
+    return 0 
+        
+};
+
+names.sort(compareFunction)
+
+// 2.	Задача. Дано масив цін. Для усіх товарів, які дорожчі за 1000грн дати знижку 20% (помножити на 0.8), а для усіх інших товарів – надати 5 % знижки (помножити на 0.95).
+let prices = [123, 256, 1200, 89, 967, 5556, 9987]
+function discount(val, i, arr) {
+    if (arr[i]>1000) {
+       return arr[i]*=0.8   <--Якщо використовується у forEach, то не потрібно return
+    } else {
+       return arr[i]*=0.95
+    }    
+}
+let discountPrices = prices.forEach(discount);
+
+// 3.	Задача. Дано масив років народження працівників. Вивести масив тих, які є призовного віку (менше 25 років).
+let yearOfBith = [1999, 1985, 1968, 1988, 1996, 1998, 2000]
+let soldiers = yearOfBirth.filter((val, i, arr)=> arr[i]>1996); 
+
+// 4.	Задача. Дано масив показників гемоглобіну (масив чисел). Сформувати масив тих, які є меншими за 115.
+let hemoglobin = [120, 115, 95, 150, 85, 96, 135]
+let lackHmb = hemoglobin.filter((val, i, arr) => arr[i <115]); <-- Подивіться де записана умова
+
+// 5.	Задача. Дано масив цін товарів. Сформувати масив тих, які є меншими за 2000грн.
+let prices = [123, 2025, 2065, 3569, 1245, 255, 1236, 69]
+let lowerThan2000 = prices.filter((val, i, arr) => arr[i]<2000)
+
+// 6.	Задача. Дано масив цін товарів. Знайти сумарну вартість тих, які знаходяться в межах від 1000 до 2000.
+let prices = [123, 2025, 2065, 3569, 1245, 255, 1236, 69]
+let conditionPrice = prices.filter((val, i, arr) => arr[i] > 100 && arr[i] < 2000)
+let priceProduct = conditionPrice.reduce((result, val, i, arr) => result += val)
+
+
+// 7.	Задача. Дано масив номерів автомобілів. Сформувати масив тих, які починаються на літеру «А» і закінчуються на літеру «Р».
+let carNumber = [A126B, A123P, A123K, A256P, A658P]
+function filterNumber (val, i, arr) {
+    return arr[i][0]==='A' && arr[i][i.length+1]==='P';
+}
+let filterCarNumber = carNumber.filter(filterNumber)
+
+// 8.	Задача. Дано масив літер. Сформувати рядок, який складається тільки з голосних
+let letters = ['a', 'b', 'e', 'f', 'i', 'h'];
+function vowelLetters(val, i, arr) {
+   return arr[i] === 'a' || arr[i] === 'e' || arr[i] === 'i' || arr[i] === 'o' || arr[i] === 'y'  <-- подивіться на функцію indexOf
+}
+let vowelLetterArr = letters.filter(vowelLetter)
+
+// Задача. Дано масив показників термометра протягом місяця. З’ясувати, чи усі показники є більшими за 10 градусів.
+let temperature = [12, 9, 56, 41, 2, -6]
+let moreThen10 = temperature.every((val, i, arr) => arr[i > 10]);  <-- Де записана умова?
+
+// -----------------------------------------------------------------------
+// Задача. Знайти добуток від’ємних елементів масиву.
+let numberArr = [12, -56, 45, -18, -65];
+function productCondition(result, val, i, arr) {
+    if (val < 0) {
+        result *=val        
+    }
+    return result
+}
+let product = numberArr.reduce(productCondition)
+// -----------------------------------------------------------------------
+// Задача. Знайти суму від’ємних елементів масиву.
+let numberArr = [12, -56, 45, -18, -65];
+function productCondition(result, val, i, arr) {
+    if (val < 0) {
+        result +=val        
+    }
+    return result
+}
+let product = numberArr.reduce(productCondition)
+// -----------------------------------------------------------------------
+
+// Задача. Створити функцію, яка б могла знаходити суму для довільної кількості переданих чисел
+let numbers = [];
+let userInput = parseFloat(prompt('Введіть число'));
+do {
+    numbers.push(userInput)
+} while (userInput = 0);
+function product(result, val, i, arr) {
+    return result += val
+};
+
+let arrayProduct = numbers.reduce(product);
+
+
+// ---------------------------------------------------------
+// Задача. Знайти або суму, або добуток чисел.
+let numbers = [];
+let userInput = parseFloat(prompt('Введіть число'));
+do {
+    numbers.push(userInput)
+} while (userInput = 0);
+function product(result, val, i, arr) {
+    return result *= val
+};
+
+let arrayProduct = numbers.reduce(product);
+// ------------------------------------------------------------------------------
+// Задача. Дано масив цілих чисел. Вибрати одну із дій при перегляді елементів. 
+// Якщо елемент більше за заданий то:
+// 1)помножити на 2;
+// 2)поділити на 7;
+// Якщо елемент менше рівне за заданий то:
+// 1)помножити на 3;
+// 2)помножити на 5.
+
+let numberArr = [12, -56, 45, -18, -65, 123, 56, 987, -56];
+let userChoice = parseInt(prompt('Choose your number'));
+function condition(val, i, arr) { <-- Краще описувати окремі функції
+    if (arr[i] > userChoice) {
+        arr[i] *=2
+    } else if(arr[i]<=userChoice) {
+        arr[i] *=5
+    }else{
+        throw new Error (`Invalid condition. Choose another number for condition`) 
+    }    
+}
+numberArr.forEach(condition);
+
+// ------------------------------------------------------------------------------
+
+// Задача 1. Дано одновимірний масив. Кожен елемент
+// 1)піднести до квадрату;
+// 2)помножити на 7;
+// 3)поділити на 10.
+
+let numberArr = [12, -56, 45, -18, -65, 123, 56, 987, -56];
+numberArr.forEach((val, i, arr) => arr[i] *=7)
+numberArr.forEach((val, i, arr) => arr[i] /=10)
+numberArr.forEach((val, i, arr) => arr[i] *=arr[i])
