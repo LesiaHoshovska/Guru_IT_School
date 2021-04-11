@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getCurrency() {
+            let currencyFrom = parseFloat(document.getElementById("selectFrom").value);
+            let currencyTo = parseFloat(document.getElementById("selectTo").value);
+            let amountForExanging = parseFloat(document.getElementById("amount").value);            
+            let exangedAmount = amountForExanging /  currencyFrom  *currencyTo;
+            return document.getElementById('res').value = exangedAmount;
+
+        }
+    </script>
+</head>
+<body>
+    <head>
+        <h1>Here we count your currency!!!</h1>
+    </head>
+    <main>
+        <label >
+            Enter your amount
+            <input type="number"  id = "amount" value="0" />
+        </label>  
+        <br><br>
+        <label >
+            Enter from what currency
+            <select name="" id="selectFrom">
+                <option value="25">USD</option>
+                <option value="35">EUR</option>
+                <option value="45">RUB</option>               
+            </select>
+        </label>  
+        <label >
+            Enter to what currency
+            <select name="" id="selectTo">
+                <option value="25">USD</option>
+                <option value="35">EUR</option>
+                <option value="45">RUB</option>               
+            </select>
+        </label>  
+
+        <button onclick="getCurrency()">
+            Submit
+        </button>
+        <br><br>
+        <label>
+            Your amount
+            <input  id = "res" value="0"  />
+        </label>            
+    </main>
+    <footer>
+        <h4>You are a rich one ;)</h4>
+    </footer>
+</body>
+</html>

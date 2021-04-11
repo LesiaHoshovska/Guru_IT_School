@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getSum() {            
+            let productList = parseFloat(document.getElementsByName("product").value);             
+            let sum = productList.reduce((prevVal, val)=>{prevVal+=val})
+            return document.getElementById("total").value = sum;                   
+        }
+
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Product list</h1>
+
+    </header>
+    <main>
+        <h3>Enter the price </h3>
+        <label >
+            Potato
+            <input type="number" name="product" id = "potato" value="0" />
+        </label>        
+                <br><br>
+        <label >
+            Beetroot
+            <input type="number" name="product" id = "beetroot" value="0" />
+        </label>        
+        <br><br>
+        <label >
+            Tomato
+            <input type="number" name="product" id = "tomato" value="0" />
+        </label>          
+        <br><br>
+        <label >
+            Cucumber
+            <input type="number" name="product" id = "cucumber" value="0" />
+        </label>         
+        <br><br>
+        <label >
+            Carrot
+            <input type="number" name="product" id = "carrot" value="0" />
+        </label>   
+        <br><br>     
+        <button  onclick="getSum()">
+            Get total sum
+        </button>
+        <br><br>
+        <label >
+            Total
+            <input type="number" id = "total" value="0" />
+        </label>
+        
+
+    </main>
+    <footer>
+        <h4>Enjoy the prime quality!!!</h4>
+    </footer>
+</body>
+</html>

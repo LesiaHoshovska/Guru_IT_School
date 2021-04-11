@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getAge() {
+            let birthYear = parseInt(document.getElementById('birthYear').value);
+            const currentYear = new Date().getFullYear();
+            let age = currentYear-birthYear;
+           return document.getElementById('res').value = age;
+        };       
+        
+    </script>
+</head>
+<body>
+    <head>
+        <h1>Here we will count your age!!!</h1>
+    </head>
+    <main>
+        <label >
+            Enter your year of birth
+            <input type="number"  id = "birthYear" value="0" />
+        </label>        
+        <button onclick="getAge()">
+            Submit
+        </button>
+        <br><br>
+        <label>
+            Your biologically age is 
+            <input  id = "res" value="0"  />
+        </label>            
+    </main>
+    <footer>
+        <h4>You are 18 forever ;)</h4>
+    </footer>
+</body>
+</html>

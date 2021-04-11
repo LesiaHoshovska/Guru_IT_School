@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function createSubjectsTable() {
+            const subjectsNumber = parseInt(document.getElementById('subjects').value);            
+            const div = document.getElementById('subjectsTable');
+            for (let i = 0; i < subjectsNumber; i++) {                
+                const label = document.createElement('label');
+                label.innerText = `Subject № ${i + 1}` ;               
+                let inp = document.createElement('input');
+                inp.type = 'number';                
+                label.appendChild(inp);                
+                div.appendChild(label);
+                const br = document.createElement('br');
+                div.appendChild(br);
+            }
+            return div
+        }
+        function getAvgMarks() {
+            const div = document.getElementById('subjectsTable')
+            const inputs = div.getElementsByTagName('input')
+            let sum = 0
+            for (const inp of inputs) {
+                sum += parseInt(inp.value)
+            }
+            const average = sum / inputs.length
+            document.getElementById('avgMarks').innerText = average
+        }
+
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Get your marks</h1>
+
+    </header>
+    <main>
+        <label>
+            How many subjects
+            <input type="number" id="subjects" value="0" />
+        </label>
+       <br>
+       <button id="createSubjectsTable" onclick="createSubjectsTable()">Create subject table</button>
+       <br><br>
+       <div id="subjectsTable">
+
+       </div>
+       <button id="getAvgMarks" onclick="getAvgMarks()">Get avg marks</button>
+       <br> <br>
+
+        
+        AvgMarks = <span id="avgMarks"> </span> 
+
+
+    </main>
+    <footer>
+        <h3>Everything will go by...</h3>
+
+    </footer>
+</body>
+</html>
