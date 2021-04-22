@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function removeTask() {
+            this.parentElement.remove();            
+        };       
+       
+
+        function addTask() {
+            const userTask = document.getElementById('task');
+            const task = userTask.value
+            userTask.innerText = '';
+                    
+            const div = document.createElement('div');
+            const span = document.createElement('span');
+            span.innerText = `${task}`
+            div.appendChild(span)
+
+            const button = document.createElement('button')
+            button.innerText = 'Remove'
+            button.onclick = removeTask;
+            div.appendChild(button)    
+
+
+            document.getElementById('taskListContainer').appendChild(div)
+        }           
+               
+    </script>
+</head>
+<body>
+    <div>
+        <fieldset>
+            <legend>New task</legend>
+            <label>
+                <input type="text" id="task" > 
+            </label>
+            <button onclick="addTask()">Schedule</button>
+        </fieldset>
+    </div>
+    <div id = "taskListContainer"></div>
+</body>
+</html>

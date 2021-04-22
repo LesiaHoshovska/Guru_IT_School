@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="userData">
+        <label>
+            Прізвище та ім'я
+            <input type="text" id="name">
+        </label>
+        <br><br>
+        <label>
+            Дата
+            <input type="text" id="data">
+        </label>
+        <br><br>
+        <label>
+            Маршрут
+            <select name="trainRoute" id="route">
+                <option name="kyiv" value="456">Київ</option>
+                <option name="lviv" value="321">Львів</option>
+                <option name="odessa" value="654">Одеса</option>
+                <option name="kharkiv" value="874">Харків</option>
+                <option name="vinnitsa" value="544">Вінниця</option>
+            </select>
+        </label>
+        <br><br>
+        <label> 
+            Кількість квитків
+            <input type="number" id="ticketsNumber">
+        </label>
+        <br><br>
+        <label>
+            Тип вагону
+            <select name="" id="cabinType">
+                <option value="5" name="kupe">Купе</option>
+                <option value="4" name="platskart">Плацкарт</option>
+                <option value="3" name="general">Загальний</option>
+            </select>
+        </label>
+        <br><br>
+        <button id="btn">Прийняти</button>
+        </div>
+        <br>
+        <div id="totalSum">
+            <fieldset id="userOrder">
+                <legend>Ваше замовлення</legend>                
+            </fieldset>            
+        </div>
+        <div>
+            <button id="clear">Нове замовлення</button>
+        </div>
+        
+            
+        </div> 
+        <script>
+
+            function getTicket() {
+                const name = document.getElementById('name');               
+                const date = document.getElementById('data');               
+                const route = document.getElementById('route');
+                const ticketsNumber = document.getElementById('ticketsNumber');               
+                const cabinType = document.getElementById('cabinType');
+                const sum = parseFloat(route.value)*parseFloat(cabinType.value)*parseInt(ticketsNumber.value);
+
+
+                const userOrderField = document.getElementById('userOrder');
+
+                const table = document.createElement('table');
+                table.id = 'table'
+
+                const tableRowTittle = document.createElement('tr')
+                const tittleName = document.createElement('td');
+                tittleName.innerText = 'Прізвище та імя';
+                const tittleDate = document.createElement('td');
+                tittleDate.innerText = 'дата';
+                const tittleRoute = document.createElement('td');
+                tittleRoute.innerText = 'Маршрут';
+                const tittleTicketsNumber = document.createElement('td');
+                tittleTicketsNumber.innerText = 'Кількість квитків';
+                const tittleCabinType = document.createElement('td');
+                tittleCabinType.innerText = 'Тип вагону'
+                const tittleSum = document.createElement('td');
+                tittleSum.innerText = 'Загальна вартість';
+
+                tableRowTittle.appendChild(tittleName);
+                tableRowTittle.appendChild(tittleDate);
+                tableRowTittle.appendChild(tittleRoute);
+                tableRowTittle.appendChild(tittleTicketsNumber);
+                tableRowTittle.appendChild(tittleCabinType);
+                tableRowTittle.appendChild(tittleSum);
+                table.appendChild(tableRowTittle)
+
+                const userTablerow = document.createElement('tr')
+                const tdName = document.createElement('td');
+                tdName.innerText = name.value;
+                const tdDate = document.createElement('td');
+                tdDate.innerText = date.value;
+                const tdRoute = document.createElement('td');
+                tdRoute.innerText = `Ужгород - ${route.options[route.selectedIndex].text}`;
+                const tdTicketsNumber = document.createElement('td');
+                tdTicketsNumber.innerText = ticketsNumber.value;
+                const tdCabinType = document.createElement('td');
+                tdCabinType.innerText = cabinType.options[cabinType.selectedIndex].text;
+                const tdSum = document.createElement('td');
+                tdSum.innerText = sum;
+
+                userTablerow.appendChild(tdName);
+                userTablerow.appendChild(tdDate);
+                userTablerow.appendChild(tdRoute);
+                userTablerow.appendChild(tdTicketsNumber);
+                userTablerow.appendChild(tdCabinType);
+                userTablerow.appendChild(tdSum);
+                table.appendChild(userTablerow)
+                userOrderField.appendChild(table)
+            }
+
+            function btnClick() {
+            document.getElementById('userOrder').removeChild(document.getElementById('table'));
+            document.getElementById('name').value = '';
+            document.getElementById('data').value = '';
+            document.getElementById('ticketsNumber').value = '';            
+        }
+
+            document.getElementById('btn').addEventListener('click', getTicket);
+
+            document.getElementById('clear').addEventListener('click', btnClick)
+
+           
+            
+        </script>
+</body>
+</html>

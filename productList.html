@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function getSum() {            
-            let productList = parseFloat(document.getElementsByName("product").value);             
-            let sum = productList.reduce((prevVal, val)=>{prevVal+=val})
-            return document.getElementById("total").value = sum;                   
-        }
+        function getSum() {
+            let productList = document.getElementsByName("product")
+            console.log(productList);
+            let sum = 0;
+            for (let i = 0; i < productList.length; i++) {
+                sum += parseFloat(productList[i].value)
+            }
+        return document.getElementById("total").value = sum;
+    }
 
     </script>
 </head>
@@ -20,31 +24,32 @@
 
     </header>
     <main>
-        <h3>Enter the price </h3>
-        <label >
-            Potato
-            <input type="number" name="product" id = "potato" value="0" />
-        </label>        
-                <br><br>
-        <label >
-            Beetroot
-            <input type="number" name="product" id = "beetroot" value="0" />
-        </label>        
-        <br><br>
-        <label >
-            Tomato
-            <input type="number" name="product" id = "tomato" value="0" />
-        </label>          
-        <br><br>
-        <label >
-            Cucumber
-            <input type="number" name="product" id = "cucumber" value="0" />
-        </label>         
-        <br><br>
-        <label >
-            Carrot
-            <input type="number" name="product" id = "carrot" value="0" />
-        </label>   
+        <h3>Enter the price </h3>        
+            <label >
+                Potato
+                <input type="number"  name="product" id = "potato" value="0" />
+            </label>        
+                    <br><br>
+            <label >
+                Beetroot
+                <input type="number"  name="product" id = "beetroot" value="0" />
+            </label>        
+            <br><br>
+            <label >
+                Tomato
+                <input type="number" name="product" id = "tomato" value="0" />
+            </label>          
+            <br><br>
+            <label >
+                Cucumber
+                <input type="number"  name="product" id = "cucumber" value="0" />
+            </label>         
+            <br><br>
+            <label >
+                Carrot
+                <input type="number" name="product" id = "carrot" value="0" />
+            </label>     
+        
         <br><br>     
         <button  onclick="getSum()">
             Get total sum
