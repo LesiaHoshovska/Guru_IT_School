@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Функція, яку ми призначаємо на контейнер кнопок
+        function btnClick(event) {
+            //event - об"єкт події (містить усю інформацію про подію)
+            //Знаходимо адресу інпута-екрана
+            const screen = document.getElementById('screen')
+            //event.target - об"єкт для якого настала подія
+            //event.target.tagName - назва тега об"єкта, для якого настала подія
+            if (event.target.tagName === 'BUTTON' ) //перевіряємо чи клікунули на кнопку
+                screen.value = screen.value + event.target.innerText
+            else
+                return false
+        }
+
+function getResult() {
+    let userInput = document.getElementById('screen').value;
+    const result = eval(userInput);
+    console.log(result)
+    userInput.value = ''
+    userInput.value = result
+    }
+
+function clearScreen() {
+    const clear = document.getElementById('screen');
+    clear.value = '';
+    
+}
+
+        //window.onload - подія, яка настає, коли вікно завантажено (дом дерево побудоване- елемнти всі вже існують)
+        window.onload = function () {
+            //на контейнер кнопок навішуємо обробник події 'click'
+            document.querySelector('.keyboard').addEventListener('click', btnClick)
+            // document.getElementById('count').addEventListener('click', getResult)
+            
+        }
+    </script>
+    <style>
+        .wrapper {
+            width: 250px;
+            height: 200px;
+            background-color: green;
+            text-align: center;
+        }
+        #screen {
+            width: 80%;
+        }
+        .btn-row {
+            margin: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="screen">
+            <input type="text" id="screen">
+        </div>
+        <div class="keyboard">
+            <div class="btn-row">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+            <div class="btn-row">
+                <button>6</button>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>0</button>
+            </div>
+            <div class="btn-row">
+                <button id="plus">+</button>
+                <button id="substract">-</button>
+                <button id="multiply">*</button>
+                <button id="divide">/</button>                        
+            </div>           
+        </div>
+        <div class="btn-row">
+            <button id="count" onclick="getResult()">=</button>
+            <button id="clear" onclick="clearScreen">Clear</button>
+        </div>
+    </div>
+</body>
+</html>

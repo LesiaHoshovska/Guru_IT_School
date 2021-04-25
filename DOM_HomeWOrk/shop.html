@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function createShopTable() {
+            let weeksNumber = parseInt(document.getElementById('weeks').value);
+            let div = document.getElementById("shopTable")
+             for (let i = 0; i < weeksNumber; i++) {
+                
+                 let div1 = document.createElement('div')
+                 let weekNumber = document.createElement('h1')
+                 weekNumber.innerText = `Week № ${i+1}`
+                 div1.appendChild(weekNumber)
+
+                for (let j = 0; j < 5; j++) {
+                let label = document.createElement('label');
+                label.innerText = `Day № ${j + 1}` ;               
+                let inp = document.createElement('input');
+                inp.type = 'number';                
+                label.appendChild(inp);                
+                div1.appendChild(label);
+                let br = document.createElement('br');
+                div1.appendChild(br);  
+                                             
+            }
+            div.appendChild(div1)
+            let br = document.createElement('br');
+            div.appendChild(br)                            
+            }            
+            return div
+        }
+
+        function getShopValue() {
+            const div = document.getElementById('shopTable')
+            const inputs = div.getElementsByTagName('input')
+            let sum = 0
+            for (const inp of inputs) {
+                sum += parseInt(inp.value)
+            }
+            document.getElementById('totalShopValue').innerText = sum
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Shop value</h1>
+
+    </header>
+    <main>
+        <label>
+            How many weeks?
+            <input type="number" id="weeks" value="0" />
+        </label>
+       <br>
+       <button id="createShopTable" onclick="createShopTable()">Create table</button>
+       <br><br>
+       <div id="shopTable">
+
+       </div>
+       <button id="CountValue" onclick="getShopValue()">Get shops value</button>
+       <br> <br>
+
+        
+        Shop value = <span id="totalShopValue"> </span> 
+
+
+    </main>
+    <footer>
+        <h3>Everything will go by...</h3>
+
+    </footer>
+    
+</body>
+</html>

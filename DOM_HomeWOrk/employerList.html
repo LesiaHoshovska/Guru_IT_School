@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>        
+        function getEmployeerData() {
+            const name = document.getElementById('name').value;
+            document.getElementById('name').value = ''
+            const job = document.getElementById('job').value;
+            document.getElementById('job').value = ''
+            const salary = document.getElementById('salary').value;
+            document.getElementById('salary').value = ''
+
+            const userRowContainer = document.createElement('tr');
+            const tdName = document.createElement('td');
+            tdName.innerText = name;
+           
+            const tdJob = document.createElement('td');
+            tdJob.innerText = job;
+            
+            const tdSalary = document.createElement('td');
+           
+            const salaryInput = document.createElement('input');
+            salaryInput.value = salary;
+                                      
+
+            tdSalary.appendChild(salaryInput)
+
+            userRowContainer.appendChild(tdName);
+            userRowContainer.appendChild(tdJob);
+            userRowContainer.appendChild(tdSalary);         
+
+           document.getElementById('dataTable').appendChild(userRowContainer)
+          
+        }
+
+        function getSalary() {
+            const salary = document.querySelectorAll("table input");
+            console.log(salary)    
+            let sum = 0;
+            for (let i = 0; i < salary.length; i++) {
+              
+                if ( parseFloat(salary[i].value)>3000) {
+                    sum +=  parseFloat(salary[i].value) 
+                } else {
+                    sum
+                }
+                                           
+            }
+            console.log(sum);
+            document.getElementById('total').innerText = sum;  
+                  
+        }
+                
+    </script>
+    
+    
+</head>
+<body>
+    <div>
+        <fieldset>
+            <legend>Дані працівника</legend>
+            <label>
+                <b>ПІБ</b>
+                <input type="text"  id="name" placeholder="Введіть ПІБ" />
+            </label>
+            <label>
+                <b>Посада</b>
+                <input type="text" id="job" placeholder="Введіть посаду"/>
+            </label>
+            <label>
+                <b>Заробітна плата</b>
+                <input type="number" id="salary" placeholder="Введіть заробітну плату"/>
+            </label>
+            <button id="btn" onclick="getEmployeerData()">Прийняти</button>
+        </fieldset>
+        <br><br>
+        <div id="tableDiv">
+            <table id = "dataTable">
+                <tr>
+                    <td>ПІБ</td>
+                    <td>Посада</td>
+                    <td>Зарплата</td>
+                </tr>
+            </table>
+        </div>
+        <br><br>        
+        <div id="salaryContainer">
+            <button id = "salaryCount" onclick = "getSalary()">Порахувати зарплату</button>
+            <br><br>
+            Загальна cума: <span id="total"></span>
+                <br>
+
+        </div>
+        
+</body>
+</html>

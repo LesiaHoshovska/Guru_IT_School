@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calc(params) {
+            let number1 = parseFloat(document.getElementById("number1").value);
+            let number2 = parseFloat(document.getElementById("number2").value);
+            let calcOperation = document.getElementById("select").value;
+            let res;
+            switch (calcOperation) {
+                    case "+":
+                    res = number1 + number2;                    
+                    break;
+                    case "-":
+                    res = number1 - number2;                    
+                    break;
+                    case "*":
+                    res = number1 * number2;                    
+                    break;
+                    case "/":
+                    res = number1 / number2;                    
+                    break;            
+                default:
+                    res = "enter numbers";
+            }
+
+            return document.getElementById("res").value = res
+
+        }
+    </script>
+</head>
+<body>
+    <head>
+        <h1>Here we will count!!!</h1>
+    </head>
+    <main>
+        <label >
+            Enter the first number
+            <input type="number"  id = "number1" value="0" />
+        </label>   
+        <label >
+            Enter the second number
+            <input type="number"  id = "number2" value="0" />
+        </label> 
+        <br><br>
+        <label >
+            Choose the operation
+            <select name="" id="select">
+                <option value="+">Adding</option>
+                <option value="-">Substraction</option>
+                <option value="*">Multiplication</option> 
+                <option value="/">Division</option>               
+            </select>
+        </label>    
+
+        <button onclick="calc()">
+            Submit
+        </button>
+        <br><br>
+        <label>
+            Result
+            <input  id = "res" value="0"  />
+        </label>            
+    </main>
+    <footer>
+        <h4>You are clever ;)</h4>
+    </footer>
+</body>
+</html>
