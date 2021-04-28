@@ -100,9 +100,9 @@ names.sort(compareFunction)
 
 // 2.	Задача. Дано масив цін. Для усіх товарів, які дорожчі за 1000грн дати знижку 20% (помножити на 0.8), а для усіх інших товарів – надати 5 % знижки (помножити на 0.95).
 let prices = [123, 256, 1200, 89, 967, 5556, 9987]
-function discount(val, i, arr) {
+function discount.forEach(val, i, arr) {
     if (arr[i]>1000) {
-       return arr[i]*=0.8   <--Якщо використовується у forEach, то не потрібно return
+       arr[i]*=0.8   <--Якщо використовується у forEach, то не потрібно return
     } else {
        return arr[i]*=0.95
     }    
@@ -115,7 +115,7 @@ let soldiers = yearOfBirth.filter((val, i, arr)=> arr[i]>1996);
 
 // 4.	Задача. Дано масив показників гемоглобіну (масив чисел). Сформувати масив тих, які є меншими за 115.
 let hemoglobin = [120, 115, 95, 150, 85, 96, 135]
-let lackHmb = hemoglobin.filter((val, i, arr) => arr[i <115]); <-- Подивіться де записана умова
+let lackHmb = hemoglobin.filter((val, i, arr) => arr[i] < 115); 
 
 // 5.	Задача. Дано масив цін товарів. Сформувати масив тих, які є меншими за 2000грн.
 let prices = [123, 2025, 2065, 3569, 1245, 255, 1236, 69]
@@ -143,7 +143,7 @@ let vowelLetterArr = letters.filter(vowelLetter)
 
 // Задача. Дано масив показників термометра протягом місяця. З’ясувати, чи усі показники є більшими за 10 градусів.
 let temperature = [12, 9, 56, 41, 2, -6]
-let moreThen10 = temperature.every((val, i, arr) => arr[i > 10]);  <-- Де записана умова?
+let moreThen10 = temperature.every((val, i, arr) => arr[i] > 10); 
 
 // -----------------------------------------------------------------------
 // Задача. Знайти добуток від’ємних елементів масиву.
