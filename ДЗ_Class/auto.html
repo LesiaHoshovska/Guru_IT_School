@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class Auto{
+            constructor(carMark, tankSize, litersNum, seatsNum, passengersNum){
+                this.carMark = carMark
+                this.tankSize = tankSize
+                this.litersNum = litersNum
+                this.seatsNum = seatsNum
+                this.passengersNum = passengersNum               
+            }  
+            getFuel(liters){
+                   return this.liters +=liters
+                } 
+            renderPassengerNum(){
+                const passContainer = document.getElementById('passengerContainer')
+                const passTable = document.createElement('table')
+                const passRow = document.createElement('tr')
+                const tdName = document.createElement('td')
+                tdName.innerText = 'Кількість пасажирів'
+                const tableData = document.createElement('td')
+                tableData.innerText = this.passengersNum
+                passContainer.appendChild(passTable)
+                passTable.appendChild(passRow)
+                passRow.appendChild(tdName)
+                passRow.appendChild(tableData)
+            } 
+            
+            removePassenger(passenger){
+                return this.passengersNum - passenger
+            }
+
+            addPassenger(passenger){
+                return this.passengersNum + passenger
+            }
+        }
+        window.onload = function(){
+            const carMark = prompt('Введіть марку автомобіля')
+            const litersNum = parseFloat(prompt('Введіть кількість літрів'))
+            const tankSize = parseFloat(prompt('Введіть обєм двигуна'))
+            const seatsNum = parseInt(prompt('Введіть кількість місць'))
+            const passengersNum = parseInt(prompt('Введіть кількість пасажирів'))
+            let auto = new Auto(carMark, tankSize, litersNum, seatsNum, passengersNum)
+            auto.renderPassengerNum()
+        }
+    </script>
+</head>
+<body>
+    <div id="passengerContainer">
+
+    </div>
+</body>
+</html>
