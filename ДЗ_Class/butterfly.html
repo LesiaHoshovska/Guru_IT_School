@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+         img {
+        width: 25px;
+        height: 25px;
+        position: relative;
+      }
+
+    </style>
+
+    <script>
+
+        class Bytterfly{
+            constructor(img, containerId){
+                this.butterflyImg = img
+                this.position = 0               
+                this.containerId = containerId
+            }
+
+            getRandomNumber(min, max){
+                return min+Math.floor(Math.random()*(max-min+1))
+            }            
+
+            moveBtf(){ 
+                const intervalMoving = setInterval(()=>{
+                    this.position += this.getRandomNumber(-1, 5000)
+                    this.btfImg.style.left = this.getRandomNumber(-20, 400) + "px"
+               this.btfImg.style.top = this.getRandomNumber(-20, 500) + "px"
+                }, 1200)                
+            }
+
+           
+
+            render(){
+                const btfContainer = document.getElementById(this.containerId)
+                this.btfImg = document.createElement("img")
+                this.btfImg.setAttribute("src", this.butterflyImg)
+                this.btfImg.style.top = this.getRandomNumber(800, 800)+'px'
+                this.btfImg.left = this.getRandomNumber(800, 800)+'px' 
+
+                btfContainer.appendChild(this.btfImg)   
+                
+                this.btfImg.addEventListener("click", ()=>{this.btfImg.remove()})
+
+                this.moveBtf()
+                
+            }
+
+        }
+        
+
+        window.onload = function () {
+            const img = "https://st.depositphotos.com/1359043/1436/i/600/depositphotos_14367695-stock-photo-violet-blue-butterfly-isolated-on.jpg"
+
+           
+
+            for (let i = 0; i < 15; i++) {
+               const butterfly = new Bytterfly(img, "container")
+                butterfly.render();                                   
+            }
+               
+        }
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
