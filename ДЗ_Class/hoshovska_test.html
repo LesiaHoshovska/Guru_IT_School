@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    class CalcTraineer {
+      constructor(min, max) {
+        this.min = min;
+        this.max = max;
+      }
+
+      render() {
+        const containerDiv = document.getElementById("container");
+        const createEl = document.createElement.bind(document);
+        this.inputDiv1 = createEl("div");
+        containerDiv.appendChild(this.inputDiv1);
+        this.firstNumberLabel = createEl("label");
+        this.firstNumberLabel.innerText = "First number";
+        this.inputDiv1.appendChild(this.firstNumberLabel);
+        this.firstNumberInput = createEl("input");
+        this.firstNumberInput.setAttribute("type", "number");
+        this.firstNumberInput.value = this.getRandomNum();
+
+        this.firstNumberLabel.appendChild(this.firstNumberInput);
+
+        this.operationDiv = createEl("div");
+        containerDiv.appendChild(this.operationDiv);
+        this.operationSpan = createEl("span");
+        this.operationSpan.innerText = "Operation:";
+        this.operationDiv.appendChild(this.operationSpan);
+        this.operation = createEl("span");
+        this.operation.setAttribute("type", "number");
+        this.operation.innerText = this.chooseOperation();
+
+        console.log(this.operation.innerText);
+
+        this.operationDiv.appendChild(this.operationSpan);
+
+        this.inputDiv2 = createEl("div");
+        containerDiv.appendChild(this.inputDiv2);
+        this.secondNumberLabel = createEl("label");
+        this.secondNumberLabel.innerText = "Second number";
+        this.inputDiv2.appendChild(this.secondNumberLabel);
+        this.secondNumberInput = createEl("input");
+        this.secondNumberInput.setAttribute("type", "number");
+        this.secondNumberInput.value = this.getRandomNum();
+
+        this.secondNumberLabel.appendChild(this.secondNumberInput);
+
+        this.answerDiv = createEl("div");
+        containerDiv.appendChild(this.answerDiv);
+        this.answerlabel = createEl("label");
+        this.answerlabel.innerText = "Your answer:";
+        this.answerDiv.appendChild(this.answerlabel);
+        this.answerInput = createEl("input");
+        this.answerInput.setAttribute("type", "number");
+        this.answerlabel.appendChild(this.answerInput);
+
+        this.btnDiv = createEl("div");
+        this.answerDiv.appendChild(this.btnDiv);
+        this.btn = createEl("button");
+        this.btn.innerText = "Check";
+        this.btnDiv.appendChild(this.btn);
+
+        this.resultDiv = createEl("div");
+        this.answerDiv.appendChild(this.resultDiv);
+
+        this.resultSpan = createEl("span");
+        this.resultSpan.innerText = "Result: ";
+        this.resultDiv.appendChild(this.resultSpan);
+        this.checkSpan = createEl("span");
+        this.checkSpan.innerText = "";
+        this.resultSpan.appendChild(this.checkSpan);
+
+        this.chooseOperation();
+
+        this.btn.addEventListener("click", () => this.checkAnswer());
+      }
+
+      getRandomNum() {
+        return this.min + Math.floor(Math.random() * (this.max - this.min + 1));
+      }
+
+      getOperation() {
+        return;
+      }
+
+      chooseOperation() {
+        let operationNumber = 1 + Math.floor(Math.random() * 4);
+        switch (operationNumber) {
+          case 1:
+            return "+";
+
+          case 2:
+            return "-";
+
+          case 3:
+            return "*";
+
+          case 4:
+            return "/";
+
+          default:
+            break;
+        }
+      }
+
+      getResult() {
+        const firstNum = parseInt(this.firstNumberInput.value);
+        const secondNum = parseInt(this.secondNumberInput.value);
+        this.operationSign = this.operation.innerText;
+        switch (this.operationSign) {
+          case "+":
+            return firstNum + secondNum;
+          case "-":
+            return firstNum - secondNum;
+          case "*":
+            return firstNum * secondNum;
+          case "/":
+            return firstNum / secondNum;
+
+          default:
+            break;
+        }
+      }
+
+      checkAnswer() {
+        this.machineResult = this.getResult();
+        console.log(this.machineResult);
+        this.humanResult = this.answerInput.value;
+        if (this.machineResult == this.humanResult) {
+          this.checkSpan.innerText = "Ok";
+        } else {
+          this.checkSpan.innerText = "Incorrect";
+        }
+      }
+    }
+
+    window.onload = function () {
+      const calcTraineer = new CalcTraineer(6, 56);
+      calcTraineer.render();
+    };
+  </script>
+
+  <body>
+    <div id="container"></div>
+  </body>
+</html>
