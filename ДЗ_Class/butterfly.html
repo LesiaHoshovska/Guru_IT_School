@@ -1,75 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <style>
-         img {
+      img {
         width: 25px;
         height: 25px;
-        position: relative;
+        position: absolute;
       }
 
+      header {
+        position: static;
+        text-align: center;
+      }
+
+      h1 {
+        color: chartreuse;
+      }
     </style>
 
     <script>
-
-        class Bytterfly{
-            constructor(img, containerId){
-                this.butterflyImg = img
-                this.position = 0               
-                this.containerId = containerId
-            }
-
-            getRandomNumber(min, max){
-                return min+Math.floor(Math.random()*(max-min+1))
-            }            
-
-            moveBtf(){ 
-                const intervalMoving = setInterval(()=>{
-                    this.position += this.getRandomNumber(-1, 5000)
-                    this.btfImg.style.left = this.getRandomNumber(-20, 400) + "px"
-               this.btfImg.style.top = this.getRandomNumber(-20, 500) + "px"
-                }, 1200)                
-            }
-
-           
-
-            render(){
-                const btfContainer = document.getElementById(this.containerId)
-                this.btfImg = document.createElement("img")
-                this.btfImg.setAttribute("src", this.butterflyImg)
-                this.btfImg.style.top = this.getRandomNumber(800, 800)+'px'
-                this.btfImg.left = this.getRandomNumber(800, 800)+'px' 
-
-                btfContainer.appendChild(this.btfImg)   
-                
-                this.btfImg.addEventListener("click", ()=>{this.btfImg.remove()})
-
-                this.moveBtf()
-                
-            }
-
+      class Parameters {
+        constructor(containerId) {
+          this.containerId = containerId;
+          this.btfNumber = 1;
+          this.btfSpeed = 300;
         }
-        
 
-        window.onload = function () {
-            const img = "https://st.depositphotos.com/1359043/1436/i/600/depositphotos_14367695-stock-photo-violet-blue-butterfly-isolated-on.jpg"
+        render() {
+          const containerDiv = document.getElementById(this.containerId);
+          const createEl = document.createElement.bind(document);
+          this.div = createEl("div");
+          containerDiv.appendChild(this.div);
+          this.div.setAttribute("id", "parametersDiv");
+          let parametersDiv = createEl("div");
+          this.div.appendChild(parametersDiv);
+          let btfLabel = createEl("label");
+          btfLabel.innerText = "How many butterflies do you want to catch?";
+          parametersDiv.appendChild(btfLabel);
+          let btfInputNumber = createEl("input");
+          btfInputNumber.setAttribute("type", "number");
+          btfInputNumber.setAttribute("id", "btfNumber");
+          btfLabel.appendChild(btfInputNumber);
 
-           
+          parametersDiv = createEl("div");
+          this.div.appendChild(parametersDiv);
+          btfLabel = createEl("label");
+          btfLabel.innerText = "Choose the butterfly speed";
+          parametersDiv.appendChild(btfLabel);
+          let btfInputSpeed = createEl("input");
 
-            for (let i = 0; i < 15; i++) {
-               const butterfly = new Bytterfly(img, "container")
-                butterfly.render();                                   
-            }
-               
+          btfInputSpeed.setAttribute("type", "number");
+          btfInputSpeed.setAttribute("id", "speed");
+
+          btfLabel.appendChild(btfInputSpeed);
+
+          parametersDiv = createEl("div");
+          this.div.appendChild(parametersDiv);
+          this.btfButton = createEl("button");
+          this.btfButton.innerText = "Set";
+          parametersDiv.appendChild(this.btfButton);
         }
+
+        setEvent(event) {
+          return this.btfButton.addEventListener("click", event);
+        }
+
+        setSpeed(speedVal) {
+          let speed = speedVal;
+          if (speed < 800 && speed > 50) {
+            return speed;
+          } else {
+            throw new Error(alert("Invalid speed. Choose between 50 - 800"));
+          }
+        }
+
+        setBtfNumber(btfNumber) {
+          return btfNumber;
+        }
+      }
+
+      class Counter {
+        constructor() {}
+
+        render() {
+          const containerDiv = document.getElementById("container");
+          const createEl = document.createElement.bind(document);
+          this.counterDiv = createEl("div");
+          containerDiv.appendChild(this.counterDiv);
+          this.counterDiv.setAttribute("id", "counterDiv");
+          this.countLabel = createEl("label");
+          this.countLabel.innerText = "Butterflies you have caught";
+          this.counterDiv.appendChild(this.countLabel);
+          this.countInput = createEl("input");
+          this.countInput.setAttribute("type", "number");
+          this.countInput.setAttribute("id", "btfCount");
+          this.countLabel.appendChild(this.countInput);
+
+          this.btnDiv = createEl("div");
+          this.counterDiv.appendChild(this.btnDiv);
+
+          this.clearBtn = createEl("button");
+          this.clearBtn.innerText = "Set new parameters";
+          this.clearBtn.setAttribute("id", "clearBtn");
+          this.btnDiv.appendChild(this.clearBtn);
+        }
+
+        deleteEl(el) {
+          return el.remove();
+        }
+
+        setNewParam(param) {
+          return param;
+        }
+
+        setEvent(event) {
+          return this.clearBtn.addEventListener("click", event);
+        }
+      }
+
+      class Bytterfly {
+        constructor(img, containerId, btfSpeed, btfNumber) {
+          this.butterflyImg = img;
+          this.position = 0;
+          this.containerId = containerId;
+          this.btfSpeed = btfSpeed;
+          this.btfNumber = btfNumber;
+        }
+
+        getRandomNumber(min, max) {
+          return min + Math.floor(Math.random() * (max - min + 1));
+        }
+
+        moveBtf() {
+          const intervalMoving = setInterval(() => {
+            this.position += this.getRandomNumber(-10, 2000);
+            this.btfImg.style.left = this.getRandomNumber(-20, 2000) + "px";
+            this.btfImg.style.top = this.getRandomNumber(-20, 500) + "px";
+          }, this.btfSpeed);
+        }
+
+        render() {
+          const btfContainer = document.getElementById(this.containerId);
+          this.btfImg = document.createElement("img");
+          this.btfImg.setAttribute("src", this.butterflyImg);
+          this.btfImg.style.top = this.getRandomNumber(800, 80) + "px";
+          this.btfImg.left = this.getRandomNumber(800, 80) + "px";
+
+          btfContainer.appendChild(this.btfImg);
+
+          this.btfImg.addEventListener("click", () => {
+            this.btfImg.remove();
+          });
+
+          this.moveBtf();
+        }
+      }
+
+      window.onload = function () {
+        const parameters = new Parameters("container");
+        parameters.render();
+
+        parameters.setEvent(function () {
+          const img =
+            "https://st.depositphotos.com/1359043/1436/i/600/depositphotos_14367695-stock-photo-violet-blue-butterfly-isolated-on.jpg";
+
+          const speed = parameters.setSpeed(
+            parseInt(document.getElementById("speed").value)
+          );
+          const btfNumber = parameters.setBtfNumber(
+            parseInt(document.getElementById("btfNumber").value)
+          );
+
+          for (let i = 0; i < btfNumber; i++) {
+            const butterfly = new Bytterfly(img, "container", speed);
+            butterfly.render();
+          }
+        });
+        parameters.setEvent(() => {
+          const count = new Counter();
+          count.deleteEl(document.getElementById("parametersDiv"));
+
+          count.render();
+
+          //   count.deleteEl(document.getElementById("counterDiv"))
+        });
+      };
     </script>
-</head>
-<body>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Butterfly world</h1>
+    </header>
+
     <div id="container"></div>
-</body>
+  </body>
 </html>
