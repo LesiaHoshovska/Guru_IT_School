@@ -85,9 +85,7 @@
       }
 
       class Counter {
-        constructor(param) {
-          this.param = param
-        }
+        constructor() {}
 
         render() {
           const containerDiv = document.getElementById("container");
@@ -101,6 +99,7 @@
           this.countInput = createEl("input");
           this.countInput.setAttribute("type", "number");
           this.countInput.setAttribute("id", "btfCount");
+          this.countInput.value = this.btfCount();
           this.countLabel.appendChild(this.countInput);
 
           this.btnDiv = createEl("div");
@@ -111,24 +110,26 @@
           this.clearBtn.setAttribute("id", "clearBtn");
           this.btnDiv.appendChild(this.clearBtn);
 
-          this.clearBtn.addEventListener("click", ()=> this.deleteEl(this.counterDiv))
+          this.clearBtn.addEventListener("click", () =>
+            this.deleteEl(this.counterDiv)
+          );
 
-          this.clearBtn.addEventListener("click", ()=>this.setNewParam(this.param))
+          this.clearBtn.addEventListener("click", () =>
+            this.setNewParam(this.param)
+          );
         }
 
         deleteEl(el) {
           return el.remove();
         }
 
-        setNewParam() {
-          return param;
+        btfCount(value) {
+          this.countInput.value = value;
         }
-
-        
       }
 
       class Bytterfly {
-        constructor(img, containerId, btfSpeed) {
+        constructor(img, containerId, btfSpeed, btfNumber) {
           this.butterflyImg = img;
           this.position = 0;
           this.containerId = containerId;
@@ -148,6 +149,22 @@
           }, this.btfSpeed);
         }
 
+        counter(event) {
+          let counter = 0;
+          if (event) {
+            counter += 1;
+          } else {
+            counter;
+          }
+          return counter;
+        }
+
+        deleteBtf() {
+          this.btfImg.addEventListener("click", () => {
+            this.btfImg.remove();
+          });
+        }
+
         render() {
           const btfContainer = document.getElementById(this.containerId);
           this.btfImg = document.createElement("img");
@@ -156,10 +173,7 @@
           this.btfImg.left = this.getRandomNumber(800, 80) + "px";
 
           btfContainer.appendChild(this.btfImg);
-
-          this.btfImg.addEventListener("click", () => {
-            this.btfImg.remove();
-          });
+          this.deleteBtf()
 
           this.moveBtf();
         }
@@ -178,7 +192,7 @@
           );
           const btfNumber = parameters.setBtfNumber(
             parseInt(document.getElementById("btfNumber").value)
-          );
+          );          
 
           for (let i = 0; i < btfNumber; i++) {
             const butterfly = new Bytterfly(img, "container", speed);
@@ -187,11 +201,10 @@
         });
         parameters.setEvent(() => {
           const count = new Counter();
-          count.deleteEl(document.getElementById("parametersDiv"));
+          //   count.deleteEl(document.getElementById("parametersDiv"));
 
           count.render();
-
-         
+          count.counter(butterfly.deleteBtf())
         });
       };
     </script>
