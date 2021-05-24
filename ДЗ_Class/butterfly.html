@@ -85,7 +85,9 @@
       }
 
       class Counter {
-        constructor() {}
+        constructor(el) {
+          this.el = el
+        }
 
         render() {
           const containerDiv = document.getElementById("container");
@@ -99,7 +101,7 @@
           this.countInput = createEl("input");
           this.countInput.setAttribute("type", "number");
           this.countInput.setAttribute("id", "btfCount");
-          this.countInput.value = this.btfCount();
+          this.countInput.value = this.counter();
           this.countLabel.appendChild(this.countInput);
 
           this.btnDiv = createEl("div");
@@ -123,9 +125,17 @@
           return el.remove();
         }
 
-        btfCount(value) {
-          this.countInput.value = value;
+        counter() {
+          let counter = 0;
+          if (this.el.onclick) {
+            counter += 1;
+          } else {
+            counter;
+          }
+          return counter;
         }
+
+        
       }
 
       class Bytterfly {
@@ -149,15 +159,7 @@
           }, this.btfSpeed);
         }
 
-        counter(event) {
-          let counter = 0;
-          if (event) {
-            counter += 1;
-          } else {
-            counter;
-          }
-          return counter;
-        }
+       
 
         deleteBtf() {
           this.btfImg.addEventListener("click", () => {
@@ -200,11 +202,11 @@
           }
         });
         parameters.setEvent(() => {
-          const count = new Counter();
+          const count = new Counter(document.querySelector('img'));
             count.deleteEl(document.getElementById("parametersDiv"));
 
           count.render();
-          count.counter(butterfly.deleteBtf())
+          count.counter()
         });
       };
     </script>
