@@ -85,8 +85,9 @@
       }
 
       class Counter {
-        constructor(el) {
+        constructor(el, btfNum) {
           this.el = el
+          this.btfNum = btfNum
         }
 
         render() {
@@ -126,13 +127,17 @@
         }
 
         counter() {
-          let counter = 0;
-          if (this.el.onclick) {
-            counter += 1;
-          } else {
-            counter;
-          }
-          return counter;
+          let counter = 1;
+         do {
+           if (this.el.remove()) {
+             counter++
+           } else {
+             counter
+           }
+         } while (counter===this.btfNum);
+          
+         return counter
+          console.log(counter)
         }
 
         
@@ -202,7 +207,7 @@
           }
         });
         parameters.setEvent(() => {
-          const count = new Counter(document.querySelector('img'));
+          const count = new Counter(document.querySelector('img'), btfNumber);
             count.deleteEl(document.getElementById("parametersDiv"));
 
           count.render();
