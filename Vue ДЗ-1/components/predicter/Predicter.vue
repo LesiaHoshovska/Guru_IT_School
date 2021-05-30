@@ -14,22 +14,22 @@ export default {
   data() {
     return {
       prediction: "",
-    };
-  },
-  methods: {
-    getPrediction() {
-      let predictionArr = [
+      predictionArr: [
         "be yourself",
         "Everything goes by",
         "You are amazing",
         "Goog luck",
         "Dont worry, be happy!!!",
-      ];
+      ],
+    };
+  },
+  methods: {
+    getPrediction() {
       const predictionNumber =
-        1 + Math.floor(Math.random() * predictionArr.length);
-      for (let i = 0; i < predictionArr.length; i++) {
+        1 + (Math.floor(Math.random() * this.predictionArr.length));
+      for (let i = 0; i < this.predictionArr.length; i++) {
         if (predictionNumber === i) {
-          return (this.prediction = predictionArr[i]);
+          return (this.prediction = this.predictionArr[i]);
         }
       }
     },
