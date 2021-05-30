@@ -20,21 +20,22 @@ export default {
     return {
       wordForTranslate: "",
       translateWord: "",
-    };
-  },
-  methods: {
-    getTranslation() {
-      let translationArr = [
+      translationArr: [
         { ukrWord: "яблуко", englWord: "apple" },
         { ukrWord: "суниця", englWord: "strawberry" },
         { ukrWord: "персик", englWord: "peach" },
         { ukrWord: "груша", englWord: "pear" },
         { ukrWord: "слива", englWord: "plum" },
         { ukrWord: "малина", englWord: "raspberry" },
-      ];
-      for (let i = 0; i < translationArr.length; i++) {
-        if (this.wordForTranslate === translationArr[i].ukrWord) {
-          return (this.translateWord = translationArr[i].englWord);
+      ]
+    };
+  },
+  methods: {
+    getTranslation() {
+      
+      for (let i = 0; i < this.translationArr.length; i++) {
+        if (this.wordForTranslate === this.translationArr[i].ukrWord) {
+          return (this.translateWord = this.translationArr[i].englWord);
         } else {
           return (this.translateWord =
             "Sorry, we haven't this word in vocabulary");
