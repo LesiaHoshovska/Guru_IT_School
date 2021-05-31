@@ -21,9 +21,9 @@ export default {
       log: "",
       pass: "",
       logArr: [
-        { log: "password", pass: "p@ssw0rd" },
-        { log: "11545", pass: "564" },
-        { log: "nianai", pass: "68547" },
+        { login: "password", password: "p@ssw0rd" },
+        { login: "11545", password: "564" },
+        { login: "nianai", password: "68547" },
       ],
     };
   },
@@ -31,12 +31,12 @@ export default {
     validateLog() {
       for (let i = 0; i < this.logArr.length; i++) {
         if (
-          this.log.value === this.logArr[i].log &&
-          this.pass.value === this.logArr[i].pass
+          this.log === this.logArr[i].login &&
+          this.pass === this.logArr[i].password
         ) {
-          return alert("Welcome");
+          alert("Welcome");
         } else {
-          return alert("invalid pass or log");
+          alert("invalid pass or log");
         }
       }
     },
