@@ -6,8 +6,8 @@
     ><br />
     <label>
       Переклад
-      <input type="text" v-model="translateWord" /> </label
-    ><br />
+      <input type="text" v-model="translateWord" /> </label    Ви тільки виводите переведене слово, тому достатньо односторонньої прив"язки даних <input type="text" :value="translateWord" />
+      ><br />
     <button @click="getTranslation">Перекласти</button>
   </div>
 </template>
