@@ -28,7 +28,7 @@ export default {
     methods: {
         getDoll() {
             const currencyRate = 28
-            this.doll = parseFloat(this.grn)*currencyRate
+            this.doll = parseFloat(this.grn)*currencyRate  Якщо відображаємо результат ділення то бажано округляти до потрібної кількості після коми toFixed
         }
     }, 
 }
