@@ -27,7 +27,7 @@ export default {
     getPrediction() {
       const predictionNumber =
         1 + (Math.floor(Math.random() * this.predictionArr.length));
-      for (let i = 0; i < this.predictionArr.length; i++) {
+      for (let i = 0; i < this.predictionArr.length; i++) {   Якщо є індекс, то просто повертайте елемент з індексом return this.predictionArr[predictionNumber]
         if (predictionNumber === i) {
           return (this.prediction = this.predictionArr[i]);
         }
