@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "Login",
+  name: "Login",           Якщо для компонента використовуєте папку, то файл у середині паки можна називати index.vue
   data() {
     return {
       log: "",
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     validateLog() {
-      for (let i = 0; i < this.logArr.length; i++) {
+      for (let i = 0; i < this.logArr.length; i++) {   Краще використовувати спеціалізовані методи обробки масивів some
         if (
           this.log === this.logArr[i].login &&
           this.pass === this.logArr[i].password
