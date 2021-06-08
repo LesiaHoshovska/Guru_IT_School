@@ -7,7 +7,7 @@
       <p>{{ taskNumber }}</p>
     </div>
     <div>
-        <input type="text" fieldset="Add task...">
+        <input type="text" fieldset="Add task...">  Навіщо це?
     </div>
   </div>
 </template>
