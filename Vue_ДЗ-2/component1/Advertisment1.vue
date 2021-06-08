@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div >
-            <img id="banner" :src="bannerImgSrc" alt="Центр відновлення зору">
+            <img id="banner" :src="bannerImgSrc" alt="Центр відновлення зору"> Краще використовуйте не ідішки а класи для стилізації
         </div>
         <div class="main">
             <div>
