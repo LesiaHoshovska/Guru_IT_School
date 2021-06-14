@@ -2,7 +2,7 @@
     <div>
         <label >
             Choose ticket class:
-            <select :value="ticketClass" >
+            <select v-model="ticketClass" >
                 <option >{{business}}</option>
                 <option >{{economy}}</option>
 
