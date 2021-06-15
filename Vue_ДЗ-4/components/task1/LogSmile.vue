@@ -13,18 +13,24 @@
 
     <button @click="user">Go</button>
     <br />
-    <img
-      v-if="user===true"
+    <div v-if="filteredUser">
+      <img
+      v-if="filteredUser===userStatus.AUTHORIZED"
       src="https://365psd.com/images/istock/previews/2121/21212345-big-smile-emoticon.jpg"
       alt="Smile"
     />
+    <span v-else-if="filteredUser===userStatus.NOT_AUTHORIZED_IVAN">Invalid Username</span>
     <span v-else>Invalid Username or Password</span>
+
+    </div>
+    
   </div>
 </template>
 
 <script>
+import { userStatus  } from "./settings.js";
 export default {
-  name: "LogSmile",
+  name: 'LogSmile',
   props: {
     userDataArr: {
       type: Array,
@@ -35,21 +41,21 @@ export default {
     return {
       userLogin: null,
       userPassword: null,
-      filteredUser: false,
+      filteredUser: null,
+      userStatus
     };
   },
   methods: {
     user() {
-      if (
-        (this.userDataArr
-          .filter((val) => {
-            val.log === this.userLogin ?? val.pass === this.userPassword;
-          })===true)
-          
-      ) {
-         (this.filteredUser = true);
-      } else {
-        (this.filteredUser = false);
+      if (this.userDataArr
+          .some(val => 
+            val.log === this.userLogin && val.pass === this.userPassword
+      )) {
+         this.filteredUser=userStatus.AUTHORIZED
+      } else if(this.userLogin==='Ivan') {
+          this.filteredUser=userStatus.NOT_AUTHORIZED_IVAN
+      }else{
+         this.filteredUser=userStatus.NOT_AUTHORIZED
       }
     },
   },
