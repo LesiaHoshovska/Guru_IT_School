@@ -1,14 +1,16 @@
 <template>
   <div>
-    <img :src="getWord" />
-    <p>{{ getWord }}</p>
-    <label>
-      Ваш переклад:
-      <input type="text"  v-model="userWord"/>
-      <button @click="compareTranslate">Перевірити</button>
-    </label>
-    <span v-if="compareTranslate">Добре. Молодець!</span>
-    <span v-else>Невірно, спробуйте ще раз</span>
+    <img :src="traineerArr[0].imgSrc" />
+    <p>{{ traineerArr[0].wordEng }}</p>
+    <div v-if="translation">
+      <label>
+        Ваш переклад:
+        <input type="text" v-model="userWord" />
+        <button @click="compareTranslate">Перевірити</button>
+      </label>
+      <span v-if="translation === true">Добре. Молодець!</span>
+      <span v-else>Невірно, спробуйте ще раз</span>
+    </div>
   </div>
 </template>
 
@@ -22,25 +24,22 @@ export default {
     },
     data() {
       return {
-        imgSrc: "",
-        wordForTranslate: "",
-        userWord: ""
+        userWord: null,
+        translation: null,
       };
-    },
-    computed: {
-      getWord() {
-        const wordNumber = Math.floor(Math.random() * this.traineerArr + 1);
-        this.imgSrc = this.traineerArr[wordNumber].imgSrc;
-        this.wordForTranslate = this.traineerArr[wordNumber].word;
-      },
     },
   },
   methods: {
-      compareTranslate() {
-          return this.userWord.toLowerCase()===this.wordForTranslate.toLowerCase()?true:false
+    compareTranslate() {
+      if (
+        this.userWord.toLowerCase() === this.traineerArr.wordUkr.toLowerCase()
+      ) {
+        return (this.translation = true);
+      } else {
+        return (this.translation = false);
       }
+    },
   },
-  
 };
 </script>
 
