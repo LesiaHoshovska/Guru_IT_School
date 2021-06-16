@@ -8,7 +8,7 @@
       </select>
     </label>
 
-    <label v-if="ticketClass === business">
+    <label v-if="ticketClass === typesLabels.business">  !!!!
       Choose koniak and the newspaper
       <select>
         <option>3 star</option>
@@ -23,7 +23,7 @@
       </select>
     </label>
 
-    <label v-else-if="ticketClass === economy">
+    <label v-else-if="ticketClass === economy">   !!!
       Choose chips and the beer
       <select>
         <option>Chips 1</option>
@@ -41,14 +41,17 @@
 </template>
 
 <script>
+const typesLabels={
+      business: "business",
+      economy: "economy"
+}
 export default {
   name: "PlainTicket",
 
   data() {
     return {
       ticketClass: null,
-      business: "business",
-      economy: "economy",
+      typesLabels
     };
   },
 };
