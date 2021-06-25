@@ -1,16 +1,15 @@
 <template>
 <div>
-    <customer-card  v-model="name" 
+    <div>
+        <customer-card  v-model="name" 
         :customer-phone-number.sync="phoneNumber"
         :customer-age.sync="age"/>
+    </div>    
+        
         <div>
-            Customer name: {{name}}
-        </div>
-        <div>
-            Customer phone number: {{phoneNumber}}
-        </div>
-        <div>
-            Customer age {{age}}
+            <customers-list :name="name"
+            :age="age"
+            :phoneNumber="phoneNumber"/>
         </div>
 
 </div>
@@ -20,9 +19,10 @@
 
 <script>
 import customerCard from './customerCard/customerCard.vue'
+import CustomersList from './customersList/customersList.vue'
 export default {
     name: 'ShopCustomersApp',
-  components: { customerCard },
+  components: { customerCard, CustomersList },
   data() {
             return {
                 name: "John",
