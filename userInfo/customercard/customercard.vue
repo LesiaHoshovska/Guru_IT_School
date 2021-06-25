@@ -20,19 +20,13 @@
       >
     </label>
     </div>
-    <div>
-      <button>Add Customer</button>
-    </div>
-    
-
-
-  </div>
+   </div>
 </template>
 
 <script>
-  export default {
-    name: 'CustomerCard',
-    props: {
+export default {
+name: 'CustomerCard',
+props: {
       customerName: {
         type: String,
         default: 'No name'
@@ -46,9 +40,9 @@
         default: 25
       }
     },
-  }
+}
 </script>
 
-<style lang="scss" scoped>
+<style>
 
 </style>
